@@ -26,24 +26,24 @@ import android.widget.Spinner;
 
 
 public class CustomSpinner extends Spinner {
-	
-	public CustomSpinner(Context context, AttributeSet attrs) {
-	    super(context, attrs);
-	}   
-	
-	public CustomSpinner(Context context) {
-	    super(context);
-	}
-//	public void setSelectionByItemId(AdapterView<?> parent, long id){
-	public void setSelectionByItemId(long id){
-		for (int i = 0; i < this.getCount(); i++) {              
-	          long itemIdAtPosition = this.getItemIdAtPosition(i);
-	          if (itemIdAtPosition == id) {
-	        	  this.setSelection(i);
-	        	  break;
-	          }
-		}
-	}
-	
-	
+
+    public CustomSpinner(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public CustomSpinner(Context context) {
+        super(context);
+    }
+//    public void setSelectionByItemId(AdapterView<?> parent, long id){
+    public void setSelectionByItemId(long id){
+        for (int i = 0; i < this.getCount(); i++) {
+              long itemIdAtPosition = this.getItemIdAtPosition(i);
+              if (itemIdAtPosition == id) {
+                  this.setSelection(i);
+                  break;
+              }
+        }
+    }
+
+
 }

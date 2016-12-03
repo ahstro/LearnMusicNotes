@@ -35,22 +35,22 @@ import net.fercanet.LNM.Preferences;
 
 
 public class Settings extends Activity {
-	
-	Preferences prefs;
+
+    Preferences prefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        
+
         Button endgame = (Button) findViewById(R.id.endgame);
         endgame.setOnClickListener(ClickListener);
-              
+
         Spinner spinner = (Spinner) findViewById(R.id.sphofentries);
         ArrayAdapter adapter = ArrayAdapter.createFromResource( this, R.array.hofentries_array , android.R.layout.simple_spinner_dropdown_item); adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(ItemSelectedListener);
-        
+
         RadioButton rbseeuropean = (RadioButton) findViewById(R.id.rbseeuropean);
         RadioButton rbenglish = (RadioButton) findViewById(R.id.rbenglish);
         RadioButton rbnortheneuropean = (RadioButton) findViewById(R.id.rbnortheneuropean);
@@ -63,60 +63,60 @@ public class Settings extends Activity {
         rbbizantine.setOnClickListener(RadioListener);
         rbjapanese.setOnClickListener(RadioListener);
         rbindian.setOnClickListener(RadioListener);
-        
+
         RadioButton rbinformeryes = (RadioButton) findViewById(R.id.rbyes);
         RadioButton rbinformerno = (RadioButton) findViewById(R.id.rbno);
         rbinformeryes.setOnClickListener(RadioListenerInformer);
         rbinformerno.setOnClickListener(RadioListenerInformer);
-        
+
         prefs = new Preferences(this);             // Instantiating Preferences in prefs global variable
 
         spinner.setSelection(prefs.scoresnumpos);
-    
+
         rbseeuropean.setChecked(false);
         rbenglish.setChecked(false);
         rbnortheneuropean.setChecked(false);
         rbbizantine.setChecked(false);
         rbjapanese.setChecked(false);
         rbindian.setChecked(false);
-        
+
         if (prefs.notationstyle.equals("seeuropean")) {rbseeuropean.setChecked(true);}
         else if (prefs.notationstyle.equals("english")) {rbenglish.setChecked(true);}
         else if (prefs.notationstyle.equals("northeneuropean")) {rbnortheneuropean.setChecked(true);}
         else if (prefs.notationstyle.equals("bizantine")) {rbbizantine.setChecked(true);}
         else if (prefs.notationstyle.equals("japanese")) {rbjapanese.setChecked(true);}
         else if (prefs.notationstyle.equals("bindian")) {rbindian.setChecked(true);}
-        
+
         if (prefs.informer == true) {
-        	rbinformeryes.setChecked(true);
-        	rbinformerno.setChecked(false);
+            rbinformeryes.setChecked(true);
+            rbinformerno.setChecked(false);
         }
         else if (prefs.informer == false) {
-        	rbinformeryes.setChecked(false);
-        	rbinformerno.setChecked(true);
+            rbinformeryes.setChecked(false);
+            rbinformerno.setChecked(true);
         }
     }
-    
-    
+
+
     // ToFix dirty trick because i can't call Utils.reloadScores directly from the clickListener because the context is not the same.
     private void reloadScoresCall() {
-    	Utils.reloadScores(this);
+        Utils.reloadScores(this);
     }
-    
+
     // Click listener for exit button
     OnClickListener ClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			
-		    reloadScoresCall();
-			
-     	   	Intent intent = new Intent();
-     	   	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.MainMenu");
-     	   	startActivity(intent);
-		}
+        @Override
+        public void onClick(View v) {
+
+            reloadScoresCall();
+
+                Intent intent = new Intent();
+                intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.MainMenu");
+                startActivity(intent);
+        }
     };
-    
-    
+
+
     // Click listener for Notation style RadioButtons
     OnClickListener RadioListener = new OnClickListener() {
         public void onClick(View v) {
@@ -130,47 +130,47 @@ public class Settings extends Activity {
             prefs.SavePreferences();
         }
     };
-    
-    
+
+
     // OnItemSelectedListener for sphofentries (spinner with the number of hall of fame entries)
     OnItemSelectedListener ItemSelectedListener = new OnItemSelectedListener() {
-		@Override
-		public void onItemSelected(AdapterView<?> parent, View view, int pos,
-				long id) {
-			Object item = parent.getItemAtPosition(pos);
-			String value = item.toString();
-			prefs.scoresnumpos = pos;
-            prefs.scoresnum = Long.parseLong(value);			
-			prefs.SavePreferences();
-		}
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,
+                long id) {
+            Object item = parent.getItemAtPosition(pos);
+            String value = item.toString();
+            prefs.scoresnumpos = pos;
+            prefs.scoresnum = Long.parseLong(value);
+            prefs.SavePreferences();
+        }
 
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-			
-		}
-		
-    }; 
-    
-    
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+
+        }
+
+    };
+
+
     // Click listener for Notation style RadioButtons
     OnClickListener RadioListenerInformer = new OnClickListener() {
         public void onClick(View v) {
             RadioButton rb = (RadioButton) v;
             if (rb.getId() == R.id.rbyes) {
-            		prefs.informer = true;
-            		prefs.SavePreferences();
+                    prefs.informer = true;
+                    prefs.SavePreferences();
             }
-            
+
             else if (rb.getId() == R.id.rbno) {
-            		prefs.informer = false;
-            		prefs.SavePreferences();
+                    prefs.informer = false;
+                    prefs.SavePreferences();
             }
         }
     };
-    
-    
-   
-	
+
+
+
+
 }
 
 

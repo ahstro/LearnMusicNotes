@@ -42,90 +42,90 @@ public class Hof extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hof); 
+        setContentView(R.layout.hof);
         Button bt = (Button) findViewById(R.id.exithof);
         bt.setOnClickListener(ClickListener);
-        loadHofTable(); 
+        loadHofTable();
     }
-    
-    
+
+
     // Returns the file content in a string
     public String getStringFromFile(String file){
-    	FileInputStream fis;
+        FileInputStream fis;
         int ch;
         StringBuffer strContent = new StringBuffer("");
-		try {
-			fis = openFileInput(file);
-			 while((ch = fis.read()) != -1)
-			        strContent.append((char)ch);
-			fis.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return strContent.toString();
+        try {
+            fis = openFileInput(file);
+             while((ch = fis.read()) != -1)
+                    strContent.append((char)ch);
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strContent.toString();
     }
-    
-    
+
+
     // Draws Hall of fame table with a row for every score saved in halloffame file
     public void loadHofTable(){
-		
-    	TableLayout tl = (TableLayout)findViewById(R.id.hoftable);       
-       
-		String filecontent = getStringFromFile("halloffame");
 
-		if (!filecontent.equals("")) {
-	        String scores[] = filecontent.split(";");
-	    	
-	        for (int i=0; i<scores.length; i++){
-	            
-	        	String score[];
-	        	score = scores[i].split(",");
-	        	
-	        	TableRow tr = new TableRow(this);
-	            tr.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-	
-	            TextView points = new TextView(this);
-	            points.setGravity(Gravity.CENTER_VERTICAL);
-	            points.setGravity(Gravity.CENTER_HORIZONTAL);
-	            points.setTextColor(Color.BLACK);
-	            points.setText(score[0]);
-	            points.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-	            tr.addView(points);
-	           
-	            TextView playername = new TextView(this);
-	            playername.setGravity(Gravity.CENTER_VERTICAL);
-	            playername.setGravity(Gravity.CENTER_HORIZONTAL);
-	            playername.setTextColor(Color.BLACK);
-	            playername.setText(score[1]);
-	            playername.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-	            tr.addView(playername);
-	            
-	            TextView dat = new TextView(this);
-	            dat.setGravity(Gravity.CENTER_VERTICAL);
-	            dat.setGravity(Gravity.CENTER_HORIZONTAL);
-	            dat.setTextColor(Color.BLACK);
-	            dat.setText(score[2]);
-	            dat.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-	            tr.addView(dat);
-	            
-	            tl.addView(tr,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));		
-	        }
-        }  
+        TableLayout tl = (TableLayout)findViewById(R.id.hoftable);
+
+        String filecontent = getStringFromFile("halloffame");
+
+        if (!filecontent.equals("")) {
+            String scores[] = filecontent.split(";");
+
+            for (int i=0; i<scores.length; i++){
+
+                String score[];
+                score = scores[i].split(",");
+
+                TableRow tr = new TableRow(this);
+                tr.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+
+                TextView points = new TextView(this);
+                points.setGravity(Gravity.CENTER_VERTICAL);
+                points.setGravity(Gravity.CENTER_HORIZONTAL);
+                points.setTextColor(Color.BLACK);
+                points.setText(score[0]);
+                points.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                tr.addView(points);
+
+                TextView playername = new TextView(this);
+                playername.setGravity(Gravity.CENTER_VERTICAL);
+                playername.setGravity(Gravity.CENTER_HORIZONTAL);
+                playername.setTextColor(Color.BLACK);
+                playername.setText(score[1]);
+                playername.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                tr.addView(playername);
+
+                TextView dat = new TextView(this);
+                dat.setGravity(Gravity.CENTER_VERTICAL);
+                dat.setGravity(Gravity.CENTER_HORIZONTAL);
+                dat.setTextColor(Color.BLACK);
+                dat.setText(score[2]);
+                dat.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                tr.addView(dat);
+
+                tl.addView(tr,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+            }
+        }
     }
-    
-    
+
+
     // Click listener for the exit button
     OnClickListener ClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent();
-			intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.MainMenu");
-			startActivity(intent);
-		}
-		
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.MainMenu");
+            startActivity(intent);
+        }
+
     };
-	
-	
+
+
 }

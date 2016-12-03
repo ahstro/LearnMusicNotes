@@ -49,38 +49,38 @@ public class MainMenu extends Activity {
         Button endgame = (Button) findViewById(R.id.endgame);
         endgame.setOnClickListener(ClickListener);
     }
-    
-    
+
+
     // Click listener for the four menu buttons
     OnClickListener ClickListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			Intent intent = new Intent();
-			switch (v.getId()) {
-			case R.id.mintest:
-		    	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
-		    	intent.putExtra("omt", true);
-		    	startActivity(intent);
-			break;
-			case R.id.training:	
-		    	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
-		    	intent.putExtra("omt", false);
-		    	startActivity(intent);
-			break;
-			case R.id.hof:	
-		    	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Hof");
-		    	startActivity(intent);
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            switch (v.getId()) {
+            case R.id.mintest:
+                intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
+                intent.putExtra("omt", true);
+                startActivity(intent);
+            break;
+            case R.id.training:
+                intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
+                intent.putExtra("omt", false);
+                startActivity(intent);
+            break;
+            case R.id.hof:
+                intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Hof");
+                startActivity(intent);
 
-	    	break;
-			case R.id.endgame:	
-		    	moveTaskToBack(true);
+            break;
+            case R.id.endgame:
+                moveTaskToBack(true);
 
-	    	break;
-			}
-		}
-    };	
+            break;
+            }
+        }
+    };
 
-    
+
     // when the phone menu item is pressed show game_menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,40 +88,40 @@ public class MainMenu extends Activity {
         inflater.inflate(R.menu.game_menu, menu);
         return true;
     }
-    
-    
+
+
     // handles the events for all the options in game_menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	Intent intent = new Intent();
+        Intent intent = new Intent();
         switch (item.getItemId()) {
         case R.id.menu_1mintest:
-        	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
-        	intent.putExtra("omt", true);
-        	startActivity(intent);
+            intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
+            intent.putExtra("omt", true);
+            startActivity(intent);
             return true;
         case R.id.menu_training:
-        	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
-        	intent.putExtra("omt", false);
-        	startActivity(intent);
+            intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Game");
+            intent.putExtra("omt", false);
+            startActivity(intent);
             return true;
-        case R.id.menu_hof:	
-        	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Hof");
-        	startActivity(intent);
-        	return true;
-        case R.id.menu_settings:	
-        	intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Settings");
-        	startActivity(intent);
-        	return true;
-        case R.id.menu_Quit:	
-        	moveTaskToBack(true);
-        	return true;
+        case R.id.menu_hof:
+            intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Hof");
+            startActivity(intent);
+            return true;
+        case R.id.menu_settings:
+            intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.Settings");
+            startActivity(intent);
+            return true;
+        case R.id.menu_Quit:
+            moveTaskToBack(true);
+            return true;
         default:
             return super.onOptionsItemSelected(item);
         }
     }
-    
 
-    
-    
+
+
+
 }

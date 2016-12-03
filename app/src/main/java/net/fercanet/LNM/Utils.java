@@ -43,7 +43,7 @@ class Score implements Comparable<Score> {
         this.name = name;
         this.date = date;
     }
-    
+
 
     @Override
     public int compareTo(Score o) {
@@ -53,98 +53,98 @@ class Score implements Comparable<Score> {
 
 
 public class Utils {
-	
 
-	// Is this score in the top scores?
+
+    // Is this score in the top scores?
     public static Boolean isInTheTopScores(Integer userscore, Context context) {
-      
-		List<Score> scores = new ArrayList<Score>();
-        
+
+        List<Score> scores = new ArrayList<Score>();
+
         String filecontent = getStringFromFile("halloffame", context);              // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
 
         if (!filecontent.equals("")) {
-	        String scoresarray[] = filecontent.split(";");                 // Split the string in "user,score" strings into an array
-	        
-	        for (int i = 0; i < scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
-	        	String scorearray[];
-	        	scorearray = scoresarray[i].split(",");  
-	        	scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
-	        }
+            String scoresarray[] = filecontent.split(";");                 // Split the string in "user,score" strings into an array
+
+            for (int i = 0; i < scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
+                String scorearray[];
+                scorearray = scoresarray[i].split(",");
+                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+            }
         }
-  
+
         Collections.sort(scores);
-        ListIterator<Score> i = scores.listIterator(); 
-        
-        Preferences prefs = new Preferences(context); 
-        
+        ListIterator<Score> i = scores.listIterator();
+
+        Preferences prefs = new Preferences(context);
+
         if (i.hasNext() && scores.size()>=prefs.scoresnum) {
-        	Score worstscore=(Score)i.next();
-        	return (userscore >= worstscore.score) ? true : false;
+            Score worstscore=(Score)i.next();
+            return (userscore >= worstscore.score) ? true : false;
         }
-        else return true;    
+        else return true;
     }
-	    
-    
+
+
     // Save the score list to halloffame file
     private static void saveListInFile(List<Score> scores, Context context){
-    	
-    	ListIterator<Score> i = scores.listIterator(scores.size());
-      
-        FileOutputStream fos = null;
-        
-        try {
- 			fos = context.openFileOutput("halloffame", Context.MODE_PRIVATE);
- 			
- 		} catch (FileNotFoundException e1) {
- 			e1.printStackTrace();
- 		}
-         
- 		int entries = 1;
- 		
- 		Preferences prefs = new Preferences(context); 
- 		
-        while(i.hasPrevious() && entries<=prefs.scoresnum)
-        {	
-        	Score entry=(Score)i.previous();
 
-         	String name = String.valueOf(entry.score) + "," + entry.name + "," + entry.date + ";";
- 			
- 			try {
- 				
- 				fos.write(name.getBytes());
- 				
- 			} catch (FileNotFoundException e) {
- 				e.printStackTrace();
- 			} catch (IOException e) {
- 				e.printStackTrace();
- 			}
- 			entries++;			
+        ListIterator<Score> i = scores.listIterator(scores.size());
+
+        FileOutputStream fos = null;
+
+        try {
+             fos = context.openFileOutput("halloffame", Context.MODE_PRIVATE);
+
+         } catch (FileNotFoundException e1) {
+             e1.printStackTrace();
+         }
+
+         int entries = 1;
+
+         Preferences prefs = new Preferences(context);
+
+        while(i.hasPrevious() && entries<=prefs.scoresnum)
+        {
+            Score entry=(Score)i.previous();
+
+             String name = String.valueOf(entry.score) + "," + entry.name + "," + entry.date + ";";
+
+             try {
+
+                 fos.write(name.getBytes());
+
+             } catch (FileNotFoundException e) {
+                 e.printStackTrace();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+             entries++;
         }
         try {
-        	
-        	fos.close();
-        	
- 		} catch (IOException e) {
- 			e.printStackTrace();
- 		}
+
+            fos.close();
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
-    
-    
+
+
     // Save the new user score into the file maintaining the score order (inverse, top scores up)
     public static void saveUserScore(Score userscore, Context context) {
-      
-		List<Score> scores = new ArrayList<Score>();
-        
+
+        List<Score> scores = new ArrayList<Score>();
+
         String filecontent = getStringFromFile("halloffame", context);      // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
 
         if (!filecontent.equals("")) {
-	        String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
-	        
-	        for (int i=0; i<scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
-	        	String scorearray[];
-	        	scorearray = scoresarray[i].split(",");
-	        	scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
-	        }
+            String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
+
+            for (int i=0; i<scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
+                String scorearray[];
+                scorearray = scoresarray[i].split(",");
+                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+            }
         }
         scores.add(userscore);                                     // Add the new score into the list
 
@@ -154,9 +154,9 @@ public class Utils {
     }
 
     public static void reloadScores(Context context) {
-        
-		List<Score> scores = new ArrayList<Score>();
-        
+
+        List<Score> scores = new ArrayList<Score>();
+
         String filecontent = getStringFromFile("halloffame", context);      // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
 
         if (filecontent.equals("")) {
@@ -165,33 +165,33 @@ public class Utils {
 
         String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
 
-        for (int i=0; i<scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
+        for (int i=0; i<scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
             String scorearray[];
             scorearray = scoresarray[i].split(",");
             scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
         }
 
         Collections.sort(scores);
-        
-        saveListInFile(scores, context);    
+
+        saveListInFile(scores, context);
     }
 
     // Returns the file content in a string
     public static String getStringFromFile(String file, Context context){
-    	FileInputStream fis;
+        FileInputStream fis;
         int ch;
         StringBuffer strContent = new StringBuffer("");
-		try {
-			fis = context.openFileInput(file);
-			 while((ch = fis.read()) != -1)
-			        strContent.append((char)ch);
-			fis.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return strContent.toString();
+        try {
+            fis = context.openFileInput(file);
+             while((ch = fis.read()) != -1)
+                    strContent.append((char)ch);
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strContent.toString();
     }
-    
+
 }
