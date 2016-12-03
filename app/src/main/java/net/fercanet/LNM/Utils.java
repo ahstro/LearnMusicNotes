@@ -61,8 +61,8 @@ public class Utils {
 		List<Score> scores = new ArrayList<Score>();
         
         String filecontent = getStringFromFile("halloffame", context);              // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
-        
-        if (filecontent != "") {
+
+        if (!filecontent.equals("")) {
 	        String scoresarray[] = filecontent.split(";");                 // Split the string in "user,score" strings into an array
 	        
 	        for (int i = 0; i < scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
@@ -136,39 +136,41 @@ public class Utils {
 		List<Score> scores = new ArrayList<Score>();
         
         String filecontent = getStringFromFile("halloffame", context);      // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
-        
-        if (filecontent != "") {
+
+        if (!filecontent.equals("")) {
 	        String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
 	        
 	        for (int i=0; i<scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
 	        	String scorearray[];
-	        	scorearray = scoresarray[i].split(",");  
+	        	scorearray = scoresarray[i].split(",");
 	        	scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
 	        }
         }
         scores.add(userscore);                                     // Add the new score into the list
-        
+
         Collections.sort(scores);
-        
-        saveListInFile(scores, context);    
+
+        saveListInFile(scores, context);
     }
-    
+
     public static void reloadScores(Context context) {
         
 		List<Score> scores = new ArrayList<Score>();
         
         String filecontent = getStringFromFile("halloffame", context);      // This file is formated in this way: user1,score1;user2,score2;user3,score3; ...
-        
-        if (filecontent != "") {
-	        String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
-	        
-	        for (int i=0; i<scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
-	        	String scorearray[];
-	        	scorearray = scoresarray[i].split(",");  
-	        	scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
-	        }
+
+        if (filecontent.equals("")) {
+            return;
         }
-        
+
+        String scoresarray[] = filecontent.split(";");             // Split the string in "user,score" strings into an array
+
+        for (int i=0; i<scoresarray.length; i++){  	               // Loop Through the scorearray, split user and score pairs and add them to the list
+            String scorearray[];
+            scorearray = scoresarray[i].split(",");
+            scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+        }
+
         Collections.sort(scores);
         
         saveListInFile(scores, context);    

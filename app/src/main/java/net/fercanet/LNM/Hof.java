@@ -73,10 +73,9 @@ public class Hof extends Activity {
 		
     	TableLayout tl = (TableLayout)findViewById(R.id.hoftable);       
        
-		String filecontent = getStringFromFile("halloffame");        
-       
-        if (filecontent != "") {
-        	
+		String filecontent = getStringFromFile("halloffame");
+
+		if (!filecontent.equals("")) {
 	        String scores[] = filecontent.split(";");
 	    	
 	        for (int i=0; i<scores.length; i++){
