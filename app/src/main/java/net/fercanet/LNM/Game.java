@@ -211,8 +211,9 @@ public class Game extends Activity {
                     Calendar cal = Calendar.getInstance();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                     String date = sdf.format(cal.getTime());
+                    Preferences prefs = new Preferences(getBaseContext());
 
-                    saveUserScoreCall(new Score(points, name, date));
+                    saveUserScoreCall(new Score(points, name, date, prefs.clef));
 
                     Intent intent = new Intent();
                     intent.setClassName("net.fercanet.LNM", "net.fercanet.LNM.MainMenu");

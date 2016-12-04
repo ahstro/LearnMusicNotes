@@ -37,11 +37,13 @@ class Score implements Comparable<Score> {
     int score;
     String name;
     String date;
+    String clef;
 
-    public Score(int score, String name, String date) {
+    public Score(int score, String name, String date, String clef) {
         this.score = score;
         this.name = name;
         this.date = date;
+        this.clef = clef;
     }
 
 
@@ -68,7 +70,13 @@ public class Utils {
             for (int i = 0; i < scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
                 String scorearray[];
                 scorearray = scoresarray[i].split(",");
-                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+                String clef;
+                if (scorearray.length <= 3) {
+                    clef = "treble"; // Backwards compatibility with pre-clef scores
+                } else {
+                    clef = scorearray[3];
+                }
+                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2], clef));
             }
         }
 
@@ -107,7 +115,7 @@ public class Utils {
         {
             Score entry=(Score)i.previous();
 
-             String name = String.valueOf(entry.score) + "," + entry.name + "," + entry.date + ";";
+             String name = String.valueOf(entry.score) + "," + entry.name + "," + entry.date + "," + entry.clef + ";";
 
              try {
 
@@ -143,7 +151,14 @@ public class Utils {
             for (int i=0; i<scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
                 String scorearray[];
                 scorearray = scoresarray[i].split(",");
-                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+
+                String clef;
+                if (scorearray.length <= 3) {
+                    clef = "treble"; // Backwards compatibility with pre-clef scores
+                } else {
+                    clef = scorearray[3];
+                }
+                scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2], clef));
             }
         }
         scores.add(userscore);                                     // Add the new score into the list
@@ -168,7 +183,13 @@ public class Utils {
         for (int i=0; i<scoresarray.length; i++){                     // Loop Through the scorearray, split user and score pairs and add them to the list
             String scorearray[];
             scorearray = scoresarray[i].split(",");
-            scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2]));
+            String clef;
+            if (scorearray.length <= 3) {
+                clef = "treble"; // Backwards compatibility with pre-clef scores
+            } else {
+                clef = scorearray[3];
+            }
+            scores.add(new Score(Integer.parseInt(scorearray[0]), scorearray[1], scorearray[2], clef));
         }
 
         Collections.sort(scores);

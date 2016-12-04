@@ -110,6 +110,18 @@ public class Hof extends Activity {
                 dat.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
                 tr.addView(dat);
 
+                TextView clef = new TextView(this);
+                clef.setGravity(Gravity.CENTER_VERTICAL);
+                clef.setGravity(Gravity.CENTER_HORIZONTAL);
+                clef.setTextColor(Color.BLACK);
+                if (score.length <= 3) {
+                    clef.setText("treble"); // Backwards compatibility to scores without clef
+                } else {
+                    clef.setText(score[3]);
+                }
+                clef.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                tr.addView(clef);
+
                 tl.addView(tr,new TableLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
             }
         }

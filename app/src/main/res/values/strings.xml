@@ -22,6 +22,7 @@
     <string name="pointsh">Points</string>
     <string name="playernameh">Name</string>
     <string name="dateh">Date</string>
+    <string name="clefh">Clef</string>
     <string name="notation">Notation Style</string>
     <string name="notationtext">The names of music notes in your country</string>
     <string name="seeuropean">S and E Europeans (do re mi)</string>
