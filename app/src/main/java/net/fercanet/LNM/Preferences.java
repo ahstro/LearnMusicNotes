@@ -11,6 +11,7 @@ public class Preferences {
     public String notationstyle;   // Notation style (classic / letters)
     public boolean informer;  // informer in training mode
     private Context ctx;
+    public String clef;
 
     // Constructor
     public Preferences (Context context){
@@ -25,6 +26,7 @@ public class Preferences {
         scoresnumpos = settings.getInt("hofentriespos", 1);                     // Getting number of top scores to store
         notationstyle = settings.getString("notationstyle", "seeuropean");    // Getting notation style
         informer = settings.getBoolean("informer", true);
+        clef = settings.getString("clef", "treble");
     }
 
     public void SavePreferences() {
@@ -34,6 +36,7 @@ public class Preferences {
         editor.putInt("hofentriespos", scoresnumpos);
         editor.putString("notationstyle", notationstyle);
         editor.putBoolean("informer", informer);
+        editor.putString("clef", clef);
         editor.commit();
     }
 

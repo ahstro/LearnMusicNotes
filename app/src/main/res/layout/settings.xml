@@ -209,9 +209,56 @@
  			android:textColor="#000000"
  		/>
  	</RadioGroup> 
- 		    <Button 
-			android:id="@+id/endgame"
+		<TextView
+			android:id="@+id/separator3"
 			android:layout_below="@+id/rginformer"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/separator"
+			android:textStyle="bold"
+			android:textSize="20dp"
+			android:gravity="center_horizontal"
+			android:textColor="#000000"
+			/>
+
+		<TextView
+			android:id="@+id/tvclef"
+			android:layout_below="@+id/separator3"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:paddingTop="10dp"
+			android:text="@string/clef"
+			android:textSize="20dp"
+			android:textStyle="bold"
+			android:gravity="center_horizontal"
+			android:textColor="#000000"
+			/>
+		<RadioGroup
+			android:id="@+id/rgclef"
+			android:layout_below="@+id/tvclef"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			>
+			<RadioButton
+				android:checked="true"
+				android:id="@+id/rbtrebleclef"
+				android:text="@string/treble"
+				android:textSize="20dp"
+				android:textColor="#000000"
+				/>
+			<RadioButton
+				android:checked="false"
+				android:id="@+id/rbbassclef"
+				android:text="@string/bass"
+				android:textSize="20dp"
+				android:textColor="#000000"
+				/>
+		</RadioGroup>
+ 		    <Button
+			android:id="@+id/endgame"
+			android:layout_below="@+id/rgclef"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:height="50dp"

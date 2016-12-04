@@ -69,6 +69,11 @@ public class Settings extends Activity {
         rbinformeryes.setOnClickListener(RadioListenerInformer);
         rbinformerno.setOnClickListener(RadioListenerInformer);
 
+        RadioButton rbcleftreble = (RadioButton) findViewById(R.id.rbtrebleclef);
+        RadioButton rbclefbass = (RadioButton) findViewById(R.id.rbbassclef);
+        rbcleftreble.setOnClickListener(RadioListenerClef);
+        rbclefbass.setOnClickListener(RadioListenerClef);
+
         prefs = new Preferences(this);             // Instantiating Preferences in prefs global variable
 
         spinner.setSelection(prefs.scoresnumpos);
@@ -95,6 +100,16 @@ public class Settings extends Activity {
             rbinformeryes.setChecked(false);
             rbinformerno.setChecked(true);
         }
+
+        if (prefs.clef.equals("treble")) {
+            rbcleftreble.setChecked(true);
+            rbclefbass.setChecked(false);
+        }
+        else if (prefs.clef.equals("bass")) {
+            rbcleftreble.setChecked(false);
+            rbclefbass.setChecked(true);
+        }
+
     }
 
 
@@ -169,6 +184,20 @@ public class Settings extends Activity {
     };
 
 
+    OnClickListener RadioListenerClef = new OnClickListener() {
+        public void onClick(View v) {
+            RadioButton rb = (RadioButton) v;
+            if (rb.getId() == R.id.rbtrebleclef) {
+                    prefs.clef = "treble";
+                    prefs.SavePreferences();
+            }
+
+            else if (rb.getId() == R.id.rbbassclef) {
+                    prefs.clef = "bass";
+                    prefs.SavePreferences();
+            }
+        }
+    };
 
 
 }

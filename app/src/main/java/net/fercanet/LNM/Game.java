@@ -44,7 +44,8 @@ import android.graphics.Color;
 // Main Class
 public class Game extends Activity {
 
-    String notes[]={"sol_0","la_0","si_0","don_1","re_1","mi_1","fa_1","sol_1","la_1","si_1","don_2","re_2","mi_2","fa_2","sol_2","la_2","si_2"};
+    String trebleNotes[]={"sol_0", "la_0", "si_0", "don_1", "re_1", "mi_1", "fa_1", "sol_1", "la_1", "si_1", "don_2", "re_2", "mi_2", "fa_2", "sol_2", "la_2", "si_2"};
+    String bassNotes[]={"si_0_bass", "don_0_bass", "re_0_bass", "mi_1_bass", "fa_1_bass", "sol_1_bass", "la_1_bass", "si_1_bass", "don_1_bass", "re_1_bass", "mi_2_bass", "fa_2_bass", "sol_2_bass", "la_2_bass", "si_2_bass", "don_2_bass", "re_2_bass"};
     int notesbt[]={R.id.re,R.id.si,R.id.mi,R.id.sol,R.id.don,R.id.fa,R.id.la};
     String btseeuropeantext[]={"re","si","mi","sol","do","fa","la"};
     String btenglishtext[]={"D","B","E","G","C","F","A"};
@@ -61,6 +62,7 @@ public class Game extends Activity {
     int countdown;
     Chronometer chrono;
     String currenttime;
+    String notes[];
 
 
     @Override
@@ -69,6 +71,15 @@ public class Game extends Activity {
         setContentView(R.layout.game);
 
         omt = this.getIntent().getExtras().getBoolean("omt");
+
+        Preferences prefs = new Preferences(this);
+
+        if (prefs.clef.equals("treble")) {
+            notes = trebleNotes;
+        } else if (prefs.clef.equals("bass")) {
+            notes = bassNotes;
+        }
+
         if (savedInstanceState != null){                              // game activity has been restarted by a runtime change (orientation change)
             correct = savedInstanceState.getInt("correct");
             fail = savedInstanceState.getInt("fail");
@@ -160,7 +171,7 @@ public class Game extends Activity {
         ImageView scoreimg = (ImageView) findViewById(R.id.imgnota);
         int resid = getResources().getIdentifier(note, "drawable", this.getPackageName());
         scoreimg.setImageResource(resid);
-        String notebt = note.substring(0, note.length()-2);
+        String notebt = note.substring(0, note.indexOf('_'));
         setRedBackgroundToAllBtExceptThis(notebt);
         Player.play(getBaseContext(), notebt, notes[prevnotenum]);
     }
@@ -277,7 +288,7 @@ public class Game extends Activity {
                     Player.play(getBaseContext(), bttext, notes[prevnotenum]);
                 }
 
-                if ((notes[prevnotenum].equals(bttext+"_0")) || (notes[prevnotenum].equals(bttext+"_1")) || (notes[prevnotenum].equals(bttext+"_2"))){
+                if (notes[prevnotenum].startsWith(bttext)){
                     correct++;
                     showNextNote();
                 }
@@ -290,7 +301,7 @@ public class Game extends Activity {
                     Preferences prefs = new Preferences(getBaseContext());
                     if (omt==false && prefs.informer==true) {
                         String note = notes[prevnotenum];
-                        String notebt = note.substring(0, note.length()-2);
+                        String notebt = note.substring(0, note.indexOf('_'));
                         for (int x=0;x<notesbt.length;x++) {
 
                             bt = (Button) findViewById(notesbt[x]);

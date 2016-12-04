@@ -43,5 +43,8 @@
     <string name="informertext">Tells you the correct note when you fail in training mode</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    
+    <string name="clef">Clef</string>
+    <string name="bass">F/Bass</string>
+    <string name="treble">G/Treble</string>
+
 </resources>
