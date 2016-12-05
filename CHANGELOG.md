@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) as of vers
 
 ## [Unreleased]
 ### Added
+ - Setting to turn off sound
 
 ### Changed
  - Don't play sound when F/bass clef (Hack)

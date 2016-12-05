@@ -14,7 +14,7 @@ public class Player {
 
     public static void play(Context context, String clickedNote, String correctNote) {
         Preferences prefs = new Preferences(context);
-        if (!prefs.clef.equals("treble")) {
+        if (!prefs.clef.equals("treble") || !prefs.sound) {
             return;
         }
         mp.release();

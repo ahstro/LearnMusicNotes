@@ -1,5 +1,6 @@
 package net.fercanet.LNM;
 
+
 import android.content.*;
 
 
@@ -12,6 +13,7 @@ public class Preferences {
     public boolean informer;  // informer in training mode
     private Context ctx;
     public String clef;
+    public boolean sound;
 
     // Constructor
     public Preferences (Context context){
@@ -27,6 +29,7 @@ public class Preferences {
         notationstyle = settings.getString("notationstyle", "seeuropean");    // Getting notation style
         informer = settings.getBoolean("informer", true);
         clef = settings.getString("clef", "treble");
+        sound = settings.getBoolean("sound", true);
     }
 
     public void SavePreferences() {
@@ -37,6 +40,7 @@ public class Preferences {
         editor.putString("notationstyle", notationstyle);
         editor.putBoolean("informer", informer);
         editor.putString("clef", clef);
+        editor.putBoolean("sound", sound);
         editor.commit();
     }
 

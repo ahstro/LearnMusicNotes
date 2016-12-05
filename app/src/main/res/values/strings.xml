@@ -47,5 +47,8 @@
     <string name="clef">Clef</string>
     <string name="bass">F/Bass</string>
     <string name="treble">G/Treble</string>
+    <string name="sound">Sound</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 
 </resources>

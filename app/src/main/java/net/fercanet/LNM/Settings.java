@@ -74,6 +74,11 @@ public class Settings extends Activity {
         rbcleftreble.setOnClickListener(RadioListenerClef);
         rbclefbass.setOnClickListener(RadioListenerClef);
 
+        RadioButton rbsoundon = (RadioButton) findViewById(R.id.rbsoundon);
+        RadioButton rbsoundoff = (RadioButton) findViewById(R.id.rbsoundoff);
+        rbsoundon.setOnClickListener(RadioListenerSound);
+        rbsoundoff.setOnClickListener(RadioListenerSound);
+
         prefs = new Preferences(this);             // Instantiating Preferences in prefs global variable
 
         spinner.setSelection(prefs.scoresnumpos);
@@ -199,6 +204,13 @@ public class Settings extends Activity {
         }
     };
 
+    OnClickListener RadioListenerSound = new OnClickListener() {
+        public void onClick(View v) {
+            RadioButton rb = (RadioButton) v;
+            prefs.sound = rb.getId() == R.id.rbsoundon;
+            prefs.SavePreferences();
+        }
+    };
 
 }
 
