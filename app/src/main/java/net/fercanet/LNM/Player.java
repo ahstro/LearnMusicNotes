@@ -13,6 +13,10 @@ public class Player {
     static String[] notesList = { "don", "re", "mi", "fa", "sol", "la", "si" };
 
     public static void play(Context context, String clickedNote, String correctNote) {
+        Preferences prefs = new Preferences(context);
+        if (!prefs.clef.equals("treble")) {
+            return;
+        }
         mp.release();
 
         int noteFile;

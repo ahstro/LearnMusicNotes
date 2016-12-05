@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) as of vers
 ### Added
 
 ### Changed
+ - Don't play sound when F/bass clef (Hack)
 
 ## [1.5.0] - 2016-12-04
 ### Added
