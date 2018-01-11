@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu">Escolha um jogo:</string>
+    <string name="app_name">Learn Music Notes</string>
+    <string name="mintest">Teste de Um Minuto</string>
+    <string name="training">Treino</string>
+    <string name="hof">Hall Da Fama</string>
+    <string name="settings">Configurações</string>
+    <string name="game">Jogo</string>
+    <string name="re">re</string>
+    <string name="si">si</string>
+    <string name="mi">mi</string>
+    <string name="sol">sol</string>
+    <string name="don">do</string>
+    <string name="don_tag">don</string>
+    <string name="fa">fa</string>
+    <string name="la">la</string>
+    <string name="endgame">Encerrar Jogo</string>
+    <string name="save">Salvar</string>
+    <string name="quit">Sair</string>
+    <string name="back">Voltar</string>
+    <string name="pointsh">Pontos</string>
+    <string name="playernameh">Nome</string>
+    <string name="dateh">Data</string>
+    <string name="clefh">Clave</string>
+    <string name="notation">Estilo de Notação</string>
+    <string name="notationtext">Os nomes das notas musicais no seu país</string>
+    <string name="seeuropean">S e E Europeus (do re mi)</string>
+    <string name="english">Inglês (C D E)</string>
+    <string name="northeneuropean">Norte Europeu (C D E ... H)</string>  
+    <string name="bizantine">bizantino (ni pa vu)</string>
+    <string name="japanese">japonês (イ ロ ハ)</string>
+    <string name="indian">indiano (sa re ga)</string>
+    <string name="separator">———</string>
+    <string name="hofentries">Entradas no Hall da fama</string>
+    <string name="hofentriestext">Número máximo de pontuações mostradas no hall da fama</string>
+    <string-array name="hofentries_array">
+        <item id="1">10</item>
+        <item id="2">20</item>
+        <item id="3">50</item>
+        <item id="4">100</item>
+    </string-array>
+    <string name="informer">Habilitar Informer</string>
+    <string name="informertext">Te diz a nota correta quando você erra no modo de treino</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="clef">Clava</string>
+    <string name="bass">F/Bass</string>
+    <string name="treble">G/Treble</string>
+    <string name="sound">Som</string>
+    <string name="on">Ligado</string>
+    <string name="off">Desligado</string>
+
+</resources>
